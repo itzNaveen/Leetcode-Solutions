@@ -18,6 +18,8 @@ public:
             if(arr[i]<=K){
                 count++;
                 K = K-arr[i];
+            }else{
+                break;
             }
         }
         return count;
