@@ -25,78 +25,46 @@ struct Node
 };
 */
 
+
 class Solution{
-
-    Node* hlp(Node* l1,Node* l2){
-
-        Node* ans=new Node(0);
-
-        Node* curr=ans;
-
-        while(l1!=NULL and l2!=NULL){ 
-
-            
-
-            if(l1->data<=l2->data){
-
-                curr->next=l1;
-
-                l1=l1->next;
-
-            }
-
-            else{
-
-                curr->next=l2;
-
-                l2=l2->next;
-
-            }
-
-            curr=curr->next;
-
+  private:
+    Node *getMid(Node *head){
+        Node *slow = head, *fast = head->next;
+        while(fast and fast->next){
+            fast = fast->next->next;
+            slow = slow->next;
         }
-
-        if(l1!=NULL){curr->next=l1;}
-
-        if(l2!=NULL){curr->next=l2;}
-
-        return ans->next;
-
+        return slow;
     }
-
+    
+    Node *merge(Node *first, Node *second){
+        if(!first) return second;
+        if(!second) return first;
+        if(first->data <= second->data){
+            first->next = merge(first->next,second);
+            return first;
+        }
+        else{
+            second->next = merge(second->next,first);
+            return second;
+        }
+    }
   public:
-
     //Function to sort the given linked list using Merge Sort.
-
     Node* mergeSort(Node* head) {
-
-        // your code here
-
-        if(head==NULL ||head->next==NULL){return head;}
-
-        Node *s=head , *f=head ,*p=NULL;
-
-        while(f!=NULL and f->next!=NULL){
-
-            p=s;
-
-            s=s->next;
-
-            f=f->next->next;
-
-        }
-
-        p->next=NULL;
-
-        Node* l1=mergeSort(head);
-
-        Node* l2=mergeSort(s);
-
-       return hlp(l1,l2);
-
+        if(!head || !head->next) return head;
+        Node* mid = getMid(head);
+        Node *left = head;
+        Node *right = mid->next;
+        mid->next = NULL;
+        
+        //Sorting
+        left = mergeSort(left);
+        right = mergeSort(right);
+        
+        // Merge and return
+        return merge(left,right);
     }
-
 };
 
 
