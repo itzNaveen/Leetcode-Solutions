@@ -8,36 +8,24 @@ class Solution
 {
     public:
     //Function to count the number of ways in which frog can reach the top.
-     
-
-long long countWays(int n){
-
+    long long countWays(int n)
+    {
         
-
-        long long modulo = 1000000007;
-
-        vector<long long int>dp(n+1);
-
- 
-
-        dp[0]=1;
-
-        dp[1]=1;
-
-        dp[2]=2;
-
-        for(long long int i=3;i<=n;i++){
-
-            dp[i]=(dp[i-1]+dp[i-2]+dp[i-3])%modulo;
-
+        long long prev = 1, prev2 = 0, prev3 = 0, mod = 1e9+7;
+        for(int i = 1; i<=n; i++){
+            long long curr = 0;
+            if(i-1 >=0) curr = (curr+prev)%mod;
+            if(i-2>=0) curr = (curr+prev2)%mod;
+            if(i-3>=0) curr = (curr+prev3)%mod;
+            prev3 = prev2;
+            prev2 = prev;
+            prev = curr;
         }
-
- 
-
-        return dp[n];
-
+        return prev;
+        
     }
 };
+
 
 
 //{ Driver Code Starts.
