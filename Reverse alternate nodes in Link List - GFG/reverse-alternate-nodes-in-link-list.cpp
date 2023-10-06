@@ -76,33 +76,36 @@ void insert()
 class Solution
 {
     public:
-    void rearrange(struct Node *head)
+    Node* Reverse(Node* head){
+        if(!head || !head->next) return head;
+        Node *curr = head, *prev = NULL;
+        while(curr != NULL){
+            Node *fwd = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = fwd;
+        }
+        return prev;
+    }
+    void rearrange(struct Node *odd)
     {
-        Node * start=head;
-        Node * start_alt=head->next;
-        Node * a= start;
-        Node *b=start_alt;
-        while(b!=NULL && b->next!=NULL)
-        {
-            
-            a->next=a->next->next;
-            a=a->next;
-            b->next=b->next->next;
-            b=b->next;
-            
+        if(!odd || !odd->next) return ;
+        Node* curr = odd;
+        Node *fwd = odd->next;
+        Node *prev = fwd;
+        Node *list = NULL;
+        while(fwd && fwd->next){
+            curr->next = curr->next->next;
+            curr = curr->next;
+            fwd->next = fwd->next->next;
+            fwd = fwd->next;
         }
-        Node *curr=start_alt;
-        Node * prev=NULL;
-        while(curr!=NULL)
-        {
-            Node * next=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=next;
-        }
-        a->next=prev;
+        list = Reverse(prev);
+        curr->next = list;
+        // return odd;
     }
 };
+
 
 
 
