@@ -37,21 +37,20 @@ class Solution
     public:
     Node* pairWiseSwap(struct Node* head) 
     {
-        Node *curr = head, *prev = NULL, *next = NULL;
+        Node *curr = head, *next = NULL, *prev = NULL;
         int count = 0;
-        while(curr != NULL and count<2){
+        while(curr != NULL && count<2){
             next = curr->next;
             curr->next = prev;
             prev = curr;
             curr = next;
             count++;
         }
-        if(next){
-            head->next = pairWiseSwap(next);
-        }
+        if(next) head->next = pairWiseSwap(next);
         return prev;
     }
 };
+
 
 //{ Driver Code Starts.
 
