@@ -30,17 +30,20 @@ int main()
 /*You are required to complete this method*/
 int max_sum(int A[],int N)
 {
-    int ans = 0, total = 0, sum = 0;
+    int ans =0, total = 0, sum = 0;
+    
+    // Find the total value without rotation
     for(int i = 0; i<N; i++){
         sum += A[i];
         total += A[i]*i;
     }
     ans = max(ans,total);
+    
+    // Use this value to find the value for the next rotation
     int pref[N];
     pref[0] = total;
     for(int i = 1; i<N; i++){
-        // Calculate the value for each rotation
-        pref[i] = pref[i-1] + sum-N*A[N-i];
+        pref[i] = pref[i-1] + sum - N*A[N-i];
         ans = max(ans,pref[i]);
     }
     return ans;
