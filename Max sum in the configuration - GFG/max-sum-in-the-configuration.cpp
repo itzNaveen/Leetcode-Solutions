@@ -39,6 +39,7 @@ int max_sum(int A[],int N)
     int pref[N];
     pref[0] = total;
     for(int i = 1; i<N; i++){
+        // Calculate the value for each rotation
         pref[i] = pref[i-1] + sum-N*A[N-i];
         ans = max(ans,pref[i]);
     }
