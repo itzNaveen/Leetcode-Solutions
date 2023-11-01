@@ -17,18 +17,18 @@ public:
         for (int sum = 0; sum <= n + m - 2; ++sum) {
             if (up) {
                 for (int i = 0; i <= sum; ++i) {
-                    int row = i;
-                    int col = sum - i;
+                    int col = i;
+                    int row = sum - i;
                     if (row < n && col < m) {
-                        ans.push_back(matrix[col][row]);
+                        ans.push_back(matrix[row][col]);
                     }
                 }
             } else {
                 for (int i = 0; i <= sum; ++i) {
-                    int row = sum - i;
-                    int col = i;
+                    int col = sum - i;
+                    int row = i;
                     if (row < n && col < m) {
-                        ans.push_back(matrix[col][row]);
+                        ans.push_back(matrix[row][col]);
                     }
                 }
             }
