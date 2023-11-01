@@ -14,7 +14,7 @@ public:
         int n = matrix.size(), m = matrix[0].size();
         bool up = true;
 
-        for (int sum = 0; sum <= n + m - 2; ++sum) {
+        for (int sum = 0; sum <= n + m - 1; ++sum) {
             if (up) {
                 for (int i = 0; i <= sum; ++i) {
                     int col = i;
