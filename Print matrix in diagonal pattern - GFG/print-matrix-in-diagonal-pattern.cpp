@@ -6,39 +6,33 @@ using namespace std;
 // } Driver Code Ends
 /*You are required to complete this method */
 
-class Solution {
-public:
-    vector<int> matrixDiagonally(vector<vector<int>>& matrix) {
-        vector<int> ans;
-        if (matrix.empty() || matrix[0].empty()) return ans;
-        int n = matrix.size(), m = matrix[0].size();
+class Solution{
+  public:
+    vector<int> matrixDiagonally(vector<vector<int>>&mat)
+    {
+        vector<int>ans;
         bool up = true;
-
-        for (int sum = 0; sum <= n + m - 1; ++sum) {
-            if (up) {
-                for (int i = 0; i <= sum; ++i) {
-                    int col = i;
-                    int row = sum - i;
-                    if (row < n && col < m) {
-                        ans.push_back(matrix[row][col]);
-                    }
+        int n = mat.size(), m = mat[0].size();
+        for(int i =0; i<=n+m-1; i++){
+            if(up){
+                for(int j = 0; j<=i; j++){
+                    int row = i-j;
+                    int col = j;
+                    if(row<n && col<m) ans.push_back(mat[row][col]);
                 }
-            } else {
-                for (int i = 0; i <= sum; ++i) {
-                    int col = sum - i;
-                    int row = i;
-                    if (row < n && col < m) {
-                        ans.push_back(matrix[row][col]);
-                    }
+            }
+            else{
+                for(int j = 0; j<=i; j++){
+                    int row = j;
+                    int col = i-j;
+                    if(row<n and col<m) ans.push_back(mat[row][col]);
                 }
             }
             up = !up;
         }
-
         return ans;
     }
 };
-
 
 
 //{ Driver Code Starts.
