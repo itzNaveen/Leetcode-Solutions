@@ -97,16 +97,14 @@ struct Node {
 class Solution
 {
     public:
-    int ans = -1 ,ct = 0;
+    int ans  = -1, cnt = 0;
     void solve(Node* root, int k){
-        if(root == NULL) 
-        return;
-
+        if(!root) return ;
         solve(root->right,k);
-        ct++;
-        if(ct==k){
+        cnt++;
+        if(cnt == k){
             ans = root->data;
-            return;
+            return ;
         }
         solve(root->left,k);
     }
@@ -116,7 +114,6 @@ class Solution
         return ans;
     }
 };
-
 
 //{ Driver Code Starts.
 
