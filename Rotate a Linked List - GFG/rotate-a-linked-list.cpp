@@ -35,15 +35,11 @@ class Solution
     {
         if(!head || !head->next || k == 0) return head;
         int cnt = 1;
-        Node *curr = head;
-         while(curr->next and ++cnt){
-            curr = curr->next;
-        }
-        k = k%cnt; // find the minimum number of rotations required
+        Node* curr = head;
+        while(curr->next && ++cnt) curr = curr->next;
         curr->next = head; // make list circular
-        while(k--){
-            curr = curr->next;
-        }
+        k = k%cnt; //Reduce to minimum rotations
+        while(k--) curr = curr->next;
         head = curr->next;
         curr->next = NULL;
         return head;
