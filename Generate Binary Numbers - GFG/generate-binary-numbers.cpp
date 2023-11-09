@@ -9,20 +9,20 @@ using namespace std;
 //Function to generate binary numbers from 1 to N using a queue.
 vector<string> generate(int N)
 {
+	queue<string>q;
 	vector<string>result;
-	for(int i = 1; i<=N; i++){
-	    int num = i;
-	    string binary = "";
-	    while(num){
-	        binary += (num%2) + 48;
-	        num /= 2;
-	    }
-	    reverse(binary.begin(),binary.end());
-	    result.push_back(binary);
+	q.push("1");
+	while(N--){
+	    string s1 = q.front();
+	    q.pop();
+	    result.push_back(s1);
+	    
+	    string s2 = s1;
+	    q.push(s1.append("0"));
+	    q.push(s2.append("1"));
 	}
 	return result;
 }
-
 
 
 //{ Driver Code Starts.
